@@ -1,6 +1,6 @@
-package br.senai.sc.supertrunfofrutas.repository;
+package br.senai.sc.supertrunfofrutas.business.repository;
 
-import br.senai.sc.supertrunfofrutas.model.entity.Card;
+import br.senai.sc.supertrunfofrutas.business.model.entity.Card;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

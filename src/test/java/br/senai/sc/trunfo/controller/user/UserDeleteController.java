@@ -4,10 +4,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import br.senai.sc.supertrunfofrutas.SuperTrunfoFrutasApplication;
-import br.senai.sc.supertrunfofrutas.controller.UserController;
-import br.senai.sc.supertrunfofrutas.model.dto.UserDTO;
-import br.senai.sc.supertrunfofrutas.model.entity.User;
-import br.senai.sc.supertrunfofrutas.service.UserService;
+import br.senai.sc.supertrunfofrutas.business.controller.UserController;
+import br.senai.sc.supertrunfofrutas.business.model.dto.UserDTO;
+import br.senai.sc.supertrunfofrutas.business.model.entity.User;
+import br.senai.sc.supertrunfofrutas.business.service.UserService;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;

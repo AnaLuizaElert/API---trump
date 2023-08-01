@@ -1,9 +1,6 @@
-package br.senai.sc.supertrunfofrutas.model.entity;
+package br.senai.sc.supertrunfofrutas.business.model.entity;
 
-import br.senai.sc.supertrunfofrutas.service.CardService;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import br.senai.sc.supertrunfofrutas.business.service.CardService;
 
 import java.util.ArrayList;
 import java.util.Collections;

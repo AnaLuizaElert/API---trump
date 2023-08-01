@@ -1,4 +1,4 @@
-package br.senai.sc.supertrunfofrutas.model.entity;
+package br.senai.sc.supertrunfofrutas.business.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

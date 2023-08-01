@@ -1,8 +1,8 @@
-package br.senai.sc.supertrunfofrutas.service;
+package br.senai.sc.supertrunfofrutas.business.service;
 
-import br.senai.sc.supertrunfofrutas.model.dto.CardDTO;
-import br.senai.sc.supertrunfofrutas.model.entity.Card;
-import br.senai.sc.supertrunfofrutas.repository.CardRepository;
+import br.senai.sc.supertrunfofrutas.business.model.dto.CardDTO;
+import br.senai.sc.supertrunfofrutas.business.model.entity.Card;
+import br.senai.sc.supertrunfofrutas.business.repository.CardRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;

@@ -1,6 +1,6 @@
 package br.senai.sc.supertrunfofrutas.util;
 
-import br.senai.sc.supertrunfofrutas.repository.UserRepository;
+import br.senai.sc.supertrunfofrutas.business.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,6 +13,8 @@ public class DBUtil {
 
     @PostConstruct
     public void fillDB(){
+        userRepository.deleteAll();
+
 
     }
 }

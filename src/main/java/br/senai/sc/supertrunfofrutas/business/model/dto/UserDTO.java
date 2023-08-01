@@ -1,4 +1,4 @@
-package br.senai.sc.supertrunfofrutas.model.dto;
+package br.senai.sc.supertrunfofrutas.business.model.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;

@@ -1,10 +1,9 @@
-package br.senai.sc.supertrunfofrutas.controller;
+package br.senai.sc.supertrunfofrutas.business.controller;
 
-import br.senai.sc.supertrunfofrutas.model.dto.UserDTO;
-import br.senai.sc.supertrunfofrutas.model.dto.UserUpdateDTO;
-import br.senai.sc.supertrunfofrutas.model.entity.Card;
-import br.senai.sc.supertrunfofrutas.model.entity.User;
-import br.senai.sc.supertrunfofrutas.service.UserService;
+import br.senai.sc.supertrunfofrutas.business.service.UserService;
+import br.senai.sc.supertrunfofrutas.business.model.dto.UserDTO;
+import br.senai.sc.supertrunfofrutas.business.model.dto.UserUpdateDTO;
+import br.senai.sc.supertrunfofrutas.business.model.entity.User;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;

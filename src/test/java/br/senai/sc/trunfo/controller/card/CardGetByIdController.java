@@ -1,11 +1,9 @@
 package br.senai.sc.trunfo.controller.card;
 
 import br.senai.sc.supertrunfofrutas.SuperTrunfoFrutasApplication;
-import br.senai.sc.supertrunfofrutas.controller.CardController;
-import br.senai.sc.supertrunfofrutas.model.entity.Card;
-import br.senai.sc.supertrunfofrutas.model.entity.User;
-import br.senai.sc.supertrunfofrutas.service.CardService;
-import br.senai.sc.supertrunfofrutas.service.UserService;
+import br.senai.sc.supertrunfofrutas.business.controller.CardController;
+import br.senai.sc.supertrunfofrutas.business.model.entity.Card;
+import br.senai.sc.supertrunfofrutas.business.service.CardService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

@@ -1,8 +1,8 @@
-package br.senai.sc.supertrunfofrutas.controller;
+package br.senai.sc.supertrunfofrutas.business.controller;
 
-import br.senai.sc.supertrunfofrutas.model.dto.CardDTO;
-import br.senai.sc.supertrunfofrutas.model.entity.Card;
-import br.senai.sc.supertrunfofrutas.service.CardService;
+import br.senai.sc.supertrunfofrutas.business.model.dto.CardDTO;
+import br.senai.sc.supertrunfofrutas.business.model.entity.Card;
+import br.senai.sc.supertrunfofrutas.business.service.CardService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

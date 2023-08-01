@@ -1,12 +1,12 @@
 package br.senai.sc.trunfo.controller.user;
 
 import br.senai.sc.supertrunfofrutas.SuperTrunfoFrutasApplication;
-import br.senai.sc.supertrunfofrutas.controller.UserController;
+import br.senai.sc.supertrunfofrutas.business.controller.UserController;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.beans.factory.annotation.Autowired;
-import br.senai.sc.supertrunfofrutas.model.entity.User;
+import br.senai.sc.supertrunfofrutas.business.model.entity.User;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import br.senai.sc.supertrunfofrutas.service.UserService;
+import br.senai.sc.supertrunfofrutas.business.service.UserService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.junit.jupiter.api.Test;

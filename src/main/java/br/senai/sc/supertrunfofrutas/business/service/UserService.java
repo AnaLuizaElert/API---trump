@@ -1,9 +1,9 @@
-package br.senai.sc.supertrunfofrutas.service;
+package br.senai.sc.supertrunfofrutas.business.service;
 
-import br.senai.sc.supertrunfofrutas.model.dto.UserDTO;
-import br.senai.sc.supertrunfofrutas.model.dto.UserUpdateDTO;
-import br.senai.sc.supertrunfofrutas.model.entity.User;
-import br.senai.sc.supertrunfofrutas.repository.UserRepository;
+import br.senai.sc.supertrunfofrutas.business.model.dto.UserDTO;
+import br.senai.sc.supertrunfofrutas.business.model.dto.UserUpdateDTO;
+import br.senai.sc.supertrunfofrutas.business.model.entity.User;
+import br.senai.sc.supertrunfofrutas.business.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

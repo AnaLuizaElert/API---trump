@@ -8,10 +8,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.mockito.Mockito.when;
 
-import br.senai.sc.supertrunfofrutas.controller.UserController;
-import br.senai.sc.supertrunfofrutas.model.dto.UserUpdateDTO;
-import br.senai.sc.supertrunfofrutas.model.entity.User;
-import br.senai.sc.supertrunfofrutas.service.UserService;
+import br.senai.sc.supertrunfofrutas.business.controller.UserController;
+import br.senai.sc.supertrunfofrutas.business.model.dto.UserUpdateDTO;
+import br.senai.sc.supertrunfofrutas.business.model.entity.User;
+import br.senai.sc.supertrunfofrutas.business.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.beans.factory.annotation.Autowired;

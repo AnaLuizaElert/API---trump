@@ -1,7 +1,6 @@
-package br.senai.sc.supertrunfofrutas.model.entity;
+package br.senai.sc.supertrunfofrutas.business.model.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
