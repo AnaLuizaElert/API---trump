@@ -8,11 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class PlayerDTO {
 
     @NotEmpty
-    private String password;
+    private String username;
 
-    @NotEmpty
-    private String name;
 }

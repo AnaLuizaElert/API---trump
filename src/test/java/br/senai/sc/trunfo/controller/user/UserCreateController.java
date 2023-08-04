@@ -8,10 +8,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.mockito.Mockito.when;
 
-import br.senai.sc.supertrunfofrutas.business.controller.UserController;
-import br.senai.sc.supertrunfofrutas.business.model.dto.UserDTO;
-import br.senai.sc.supertrunfofrutas.business.model.entity.User;
-import br.senai.sc.supertrunfofrutas.business.service.UserService;
+import br.senai.sc.supertrunfofrutas.business.controller.PlayerController;
+import br.senai.sc.supertrunfofrutas.business.model.dto.PlayerDTO;
+import br.senai.sc.supertrunfofrutas.business.model.entity.Player;
+import br.senai.sc.supertrunfofrutas.business.service.PlayerService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,26 +24,26 @@ import org.junit.jupiter.api.Test;
 
 
 @ContextConfiguration(classes = SuperTrunfoFrutasApplication.class)
-@WebMvcTest(UserController.class)
+@WebMvcTest(PlayerController.class)
 public class UserCreateController {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UserService userService;
+    private PlayerService playerService;
 
     @Test
     public void Create_shouldReturnUser() throws Exception {
-        UserDTO userDTO = new UserDTO("123", "Ana");
-        User user = new User();
-        BeanUtils.copyProperties(userDTO, user);
+        PlayerDTO playerDTO = new PlayerDTO("Ana");
+        Player user = new Player();
+        BeanUtils.copyProperties(playerDTO, user);
         user.setId(1);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        String requestBody = objectMapper.writeValueAsString(userDTO);
+        String requestBody = objectMapper.writeValueAsString(playerDTO);
 
-        when(userService.create(any()))
+        when(playerService.create(any()))
                 .thenReturn(user);
 
         mockMvc.perform(post("/user/create")

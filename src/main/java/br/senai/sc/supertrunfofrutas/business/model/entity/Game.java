@@ -5,7 +5,7 @@ import java.util.Random;
 public class Game {
     private static Random generator = new Random();
     private static int player;
-    private static User userModel;
+    private static Player userModel;
     public static void startGame(){
         Deck.separateCards();
         whoStarts();

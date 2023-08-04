@@ -3,12 +3,12 @@ package br.senai.sc.trunfo.controller.user;
 import br.senai.sc.supertrunfofrutas.SuperTrunfoFrutasApplication;
 import static org.hamcrest.Matchers.hasItems;
 
-import br.senai.sc.supertrunfofrutas.business.controller.UserController;
+import br.senai.sc.supertrunfofrutas.business.controller.PlayerController;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.beans.factory.annotation.Autowired;
-import br.senai.sc.supertrunfofrutas.business.model.entity.User;
+import br.senai.sc.supertrunfofrutas.business.model.entity.Player;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import br.senai.sc.supertrunfofrutas.business.service.UserService;
+import br.senai.sc.supertrunfofrutas.business.service.PlayerService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.junit.jupiter.api.Test;
@@ -22,26 +22,26 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.mockito.Mockito.when;
 
 @ContextConfiguration(classes = SuperTrunfoFrutasApplication.class)
-@WebMvcTest(UserController.class)
+@WebMvcTest(PlayerController.class)
 public class UserGetAllController {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private UserService userService;
+    private PlayerService playerService;
 
     @Test
     public void getAll_shouldReturnUser() throws Exception {
-        List<User> listUser = new ArrayList<>();
-        User user = new User(1, "Ana", "123", 0, 0, 0);
-        User user1 = new User(2, "Annabel", "123", 0, 0, 0);
-        User user2 = new User(3, "Lucas", "123", 0, 0, 0);
+        List<Player> listUser = new ArrayList<>();
+        Player user = new Player(1, "Ana", 0, 0, 0);
+        Player user1 = new Player(2, "Annabel", 0, 0, 0);
+        Player user2 = new Player(3, "Lucas", 0, 0, 0);
         listUser.add(user);
         listUser.add(user1);
         listUser.add(user2);
 
-        when(userService.listAll())
+        when(playerService.listAll())
                 .thenReturn(listUser);
 
         mockMvc.perform(get("/user/listAll"))

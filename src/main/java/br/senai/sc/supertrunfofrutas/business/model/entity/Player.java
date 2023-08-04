@@ -9,13 +9,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private String password;
+    private String username;
     private Integer points = 0;
     private int qtyLosses = 0;
     private int qtyVitories = 0;

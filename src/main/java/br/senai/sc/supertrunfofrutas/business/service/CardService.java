@@ -42,7 +42,6 @@ public class CardService {
         Pageable pageable = PageRequest.of(page, size);
         return cardRepository.findAll(pageable);
     }
-
     public Long qtyCards(){
         return cardRepository.count();
     }
