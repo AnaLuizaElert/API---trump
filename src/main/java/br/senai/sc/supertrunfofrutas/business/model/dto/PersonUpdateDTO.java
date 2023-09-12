@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserUpdateDTO {
+public class PersonUpdateDTO {
 
     @NotNull
     private Integer points;

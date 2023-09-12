@@ -5,7 +5,7 @@ import java.util.Random;
 public class Game {
     private static Random generator = new Random();
     private static int player;
-    private static User userModel;
+    private static Person personModel;
     public static void startGame(){
         Deck.separateCards();
         whoStarts();
@@ -19,9 +19,9 @@ public class Game {
             }
         }while(Deck.getCardPlayer().size() > 0 || Deck.getCardComputer().size() > 0);
         if (Deck.getCardPlayer().size() == 0) {
-            userModel.setQtyLosses();
+            personModel.setQtyLosses();
         } else {
-            userModel.setQtyVitories();
+            personModel.setQtyVitories();
         }
     }
     public static void whoStarts(){
