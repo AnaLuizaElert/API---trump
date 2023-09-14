@@ -26,7 +26,7 @@ public class JWTUtil {
                 .withIssuer("WEG")
                 .withSubject(user.getPerson().getId().toString())
                 .withIssuedAt(new Date())
-                .withExpiresAt(new Date(new Date().getTime() + 1800000))
+                .withExpiresAt(new Date(new Date().getTime() + 18000000))
                 .sign(algorithm);
     }
 

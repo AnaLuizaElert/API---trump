@@ -11,8 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.security.web.context.SecurityContextRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,18 +28,19 @@ public class AuthenticationController {
             HttpServletRequest request,
             HttpServletResponse response
     ){
-        SecurityContextRepository contextRepository =
-                new HttpSessionSecurityContextRepository();
 
         UsernamePasswordAuthenticationToken token =
                 new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword());
 
         Authentication authentication = manager.authenticate(token);
 
-        if(!authentication.isAuthenticated()){
+        if(authentication.isAuthenticated()){
             User user = (User) authentication.getPrincipal();
             Cookie cookie = CookieUtil.generateCookie(user);
             response.addCookie(cookie);
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
             return ResponseEntity.ok(authentication.getPrincipal());
         }
 

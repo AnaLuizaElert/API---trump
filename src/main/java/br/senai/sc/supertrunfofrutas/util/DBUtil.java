@@ -24,6 +24,7 @@ public class DBUtil {
         Person personAdmin = new Person();
         personAdmin.setName("admin");
         personAdmin.setPassword(new BCryptPasswordEncoder().encode("admin"));
+
         personRepository.save(personAdmin);
 
         /*ADMIN*/
