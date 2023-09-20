@@ -24,16 +24,14 @@ public class Filter extends OncePerRequestFilter {
             FilterChain filterChain)
             throws ServletException, IOException {
 
-        System.out.println("here");
         if (!request.getRequestURI().equals("/login")) {
-            System.out.println("private path");
             try {
                 String token = CookieUtil.getToken(request);
                 User user = JWTUtil.getUser(token);
                 response.addCookie(CookieUtil.generateCookie(user));
                 Authentication authentication =
                         new UsernamePasswordAuthenticationToken(
-                                user.getUsername(), user.getPassword(), user.getAuthorities()
+                                user.getUsername(), user.getPassword()
                         );
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -47,13 +45,7 @@ public class Filter extends OncePerRequestFilter {
                 return;
             }
         }
-        System.out.println("Hallo");
         filterChain.doFilter(request, response);
-    }
-
-    /*O correto é definir sempre as rotas públicas, não as privadas*/
-    private boolean privatePath(String url) {
-        return url.startsWith("/card");
     }
 
 }
