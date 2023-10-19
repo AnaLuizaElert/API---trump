@@ -42,6 +42,7 @@ public class CardService {
                 if(cardById.equals(cardByName)){
                     Card card = new Card();
                     BeanUtils.copyProperties(cardDTO, card);
+                    card.setId(id);
                     return cardRepository.save(card);
                 }
                 //senão indica que já havia alguém com esse nome editado

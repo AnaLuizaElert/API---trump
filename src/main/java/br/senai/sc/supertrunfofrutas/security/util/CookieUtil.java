@@ -1,6 +1,6 @@
 package br.senai.sc.supertrunfofrutas.security.util;
 
-import br.senai.sc.supertrunfofrutas.security.exception.CookiesNotFound;
+import br.senai.sc.supertrunfofrutas.security.CookieNotFound;
 import br.senai.sc.supertrunfofrutas.security.model.User;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,7 +8,7 @@ import org.springframework.web.util.WebUtils;
 
 public class CookieUtil {
 
-    public static Cookie generateCookie(User user){
+    public static Cookie generateCookie(User user) {
         String token = JWTUtil.generateToken(user);
         Cookie cookie = new Cookie("JWT", token);
         cookie.setPath("/");
@@ -16,11 +16,11 @@ public class CookieUtil {
         return cookie;
     }
 
-    public static String getToken(HttpServletRequest request){
+    public static String getToken(HttpServletRequest request) {
         Cookie cookie = WebUtils.getCookie(request, "JWT");
         if(cookie != null){
             return cookie.getValue();
         }
-        throw new CookiesNotFound();
+        throw new CookieNotFound();
     }
 }

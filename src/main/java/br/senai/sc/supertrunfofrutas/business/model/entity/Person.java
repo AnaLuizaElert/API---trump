@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -12,13 +14,16 @@ import lombok.NoArgsConstructor;
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
     private String password;
     private Integer points = 0;
     private int qtyLosses = 0;
     private int qtyVitories = 0;
+
+    @Enumerated(EnumType.STRING)
+    private List<Profile> authorities;
 
     public void setQtyLosses() {
         this.qtyLosses ++;

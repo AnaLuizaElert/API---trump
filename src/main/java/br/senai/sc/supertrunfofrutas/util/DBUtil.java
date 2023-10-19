@@ -4,13 +4,10 @@ import br.senai.sc.supertrunfofrutas.business.model.entity.Card;
 import br.senai.sc.supertrunfofrutas.business.model.entity.Person;
 import br.senai.sc.supertrunfofrutas.business.repository.CardRepository;
 import br.senai.sc.supertrunfofrutas.business.repository.PersonRepository;
-import br.senai.sc.supertrunfofrutas.security.model.User;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 @AllArgsConstructor

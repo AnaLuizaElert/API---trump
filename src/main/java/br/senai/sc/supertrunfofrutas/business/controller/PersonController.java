@@ -22,20 +22,14 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<Person> create(@RequestBody @Valid PersonDTO personDTO){
         return ResponseEntity.ok(personService.create(personDTO));
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
-        personService.delete(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/listAll")
-    public ResponseEntity<List<Person>> listAll(){
-        return ResponseEntity.ok(personService.listAll());
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<Person> edit(@PathVariable Integer id, @RequestBody @Valid PersonDTO personDTO){
+        return ResponseEntity.ok(personService.edit(personDTO, id));
     }
 
     @GetMapping("/listOne/{id}")
@@ -48,13 +42,20 @@ public class PersonController {
         return ResponseEntity.ok(personService.listOneByName(name));
     }
 
-    @PutMapping("/edit/{id}")
-    public ResponseEntity<Person> edit(@PathVariable Integer id, @RequestBody @Valid PersonDTO personDTO){
-        return ResponseEntity.ok(personService.edit(personDTO, id));
+    @GetMapping
+    public ResponseEntity<List<Person>> listAll(){
+        return ResponseEntity.ok(personService.listAll());
     }
 
     @PutMapping("/editBySytem/{id}")
     public ResponseEntity<Person> editBySytem(@PathVariable Integer id, @RequestBody @Valid PersonUpdateDTO personUpdateDTO){
         return ResponseEntity.ok(personService.editBySystem(personUpdateDTO, id));
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        personService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
 }

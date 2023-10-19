@@ -1,6 +1,5 @@
 package br.senai.sc.supertrunfofrutas.security;
 
-import br.senai.sc.supertrunfofrutas.security.exception.CookiesNotFound;
 import br.senai.sc.supertrunfofrutas.security.model.User;
 import br.senai.sc.supertrunfofrutas.security.util.CookieUtil;
 import br.senai.sc.supertrunfofrutas.security.util.JWTUtil;
@@ -24,24 +23,24 @@ public class Filter extends OncePerRequestFilter {
             FilterChain filterChain)
             throws ServletException, IOException {
 
-        if (!request.getRequestURI().equals("/login")) {
+        if(!request.getRequestURI().startsWith("/login")){
             try {
-                System.out.println("Filter");
                 String token = CookieUtil.getToken(request);
-                System.out.println(token);
-                User user = JWTUtil.getUser(token);
+                User user = JWTUtil.getUsuario(token);
                 response.addCookie(CookieUtil.generateCookie(user));
+
                 Authentication authentication =
                         new UsernamePasswordAuthenticationToken(
-                                user.getUsername(), user.getPassword()
+                                user.getUsername(), null, user.getAuthorities()
                         );
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-            } catch (JWTDecodeException e) {
-                System.out.println("O cookie não foi encontrado!");
+
+            } catch (JWTDecodeException e){
+                System.out.println("O token não foi encontrado!");
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 return;
-            } catch (CookiesNotFound e) {
+            } catch (CookieNotFound e){
                 System.out.println(e.getMessage());
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 return;
@@ -49,5 +48,4 @@ public class Filter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
-
 }

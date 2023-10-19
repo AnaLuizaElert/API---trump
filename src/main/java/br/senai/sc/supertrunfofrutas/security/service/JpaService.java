@@ -9,8 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @AllArgsConstructor
 public class JpaService implements UserDetailsService {
@@ -22,4 +20,5 @@ public class JpaService implements UserDetailsService {
         Person person = personRepository.getPersonByName(username);
         return new User(person);
     }
+
 }
