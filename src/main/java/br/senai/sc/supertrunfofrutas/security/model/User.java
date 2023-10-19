@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collections;
 import java.util.List;
 
 @Data
@@ -20,7 +21,7 @@ public class User implements UserDetails {
 
     public User(Person person) {
         this.person = person;
-        this.authorities = null;
+        this.authorities = Collections.emptyList();
         this.accountNonExpired = true;
         this.accountNonLocked = true;
         this.credentialsNonExpired = true;

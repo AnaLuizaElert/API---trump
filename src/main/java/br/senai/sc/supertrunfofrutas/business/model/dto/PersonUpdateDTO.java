@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PersonUpdateDTO {
 
-    @NotNull
+    @NotNull(message = "Field points is empty")
     private Integer points;
-    @NotNull
+    @NotNull(message = "Field qtyLoses is empty")
     private int qtyLoses;
-    @NotNull
+    @NotNull(message = "Field qtyVitories is empty")
     private int qtyVitories;
 }

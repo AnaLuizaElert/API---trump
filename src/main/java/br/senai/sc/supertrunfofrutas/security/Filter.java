@@ -26,7 +26,9 @@ public class Filter extends OncePerRequestFilter {
 
         if (!request.getRequestURI().equals("/login")) {
             try {
+                System.out.println("Filter");
                 String token = CookieUtil.getToken(request);
+                System.out.println(token);
                 User user = JWTUtil.getUser(token);
                 response.addCookie(CookieUtil.generateCookie(user));
                 Authentication authentication =

@@ -6,7 +6,6 @@ import br.senai.sc.supertrunfofrutas.business.model.dto.PersonDTO;
 import br.senai.sc.supertrunfofrutas.business.model.dto.PersonUpdateDTO;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,9 +24,7 @@ public class PersonController {
 
     @PostMapping("/create")
     public ResponseEntity<Person> create(@RequestBody @Valid PersonDTO personDTO){
-        Person person = new Person();
-        BeanUtils.copyProperties(personDTO, person);
-        return ResponseEntity.ok(personService.create(person));
+        return ResponseEntity.ok(personService.create(personDTO));
     }
 
     @DeleteMapping("/delete/{id}")
@@ -48,12 +45,7 @@ public class PersonController {
 
     @GetMapping("/listOneByName/{name}")
     public ResponseEntity<Person> listOneByName(@PathVariable String name){
-        for(Person person : personService.listAll()){
-            if(person.getName().equals(name)){
-                return ResponseEntity.ok(personService.listOne(person.getId()));
-            }
-        }
-        throw new RuntimeException("Item não encontrado!");
+        return ResponseEntity.ok(personService.listOneByName(name));
     }
 
     @PutMapping("/edit/{id}")

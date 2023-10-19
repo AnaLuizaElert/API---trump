@@ -1,5 +1,7 @@
 package br.senai.sc.supertrunfofrutas.business.service;
 
+import br.senai.sc.supertrunfofrutas.business.exception.CardNotFound;
+import br.senai.sc.supertrunfofrutas.business.exception.InvalidName;
 import br.senai.sc.supertrunfofrutas.business.model.dto.CardDTO;
 import br.senai.sc.supertrunfofrutas.business.model.entity.Card;
 import br.senai.sc.supertrunfofrutas.business.repository.CardRepository;
@@ -17,27 +19,67 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CardService {
     private CardRepository cardRepository;
-    public Card create(Card card) {
+
+    public Card create(CardDTO cardDTO) {
+        Optional<Card> optionalUser = cardRepository.findByName(cardDTO.getName());
+        if(optionalUser.isPresent()){
+            throw new InvalidName();
+        }
+        Card card = new Card();
+        BeanUtils.copyProperties(cardDTO, card);
         return cardRepository.save(card);
     }
+
     public Card edit(CardDTO cardDTO, Integer id) {
-        Card card = listSpecific(id);
-        BeanUtils.copyProperties(cardDTO, card);
-        return create(card);
+        Optional<Card> optionalCardById = cardRepository.findById(id);
+        Optional<Card> optionalCardByName = cardRepository.findByName(cardDTO.getName());
+
+        if(optionalCardById.isPresent()){
+            if(optionalCardByName.isPresent()){
+                Card cardById = optionalCardById.get();
+                Card cardByName = optionalCardByName.get();
+                //se existem ambos e os nomes são iguais a carta pode ser editada
+                if(cardById.equals(cardByName)){
+                    Card card = new Card();
+                    BeanUtils.copyProperties(cardDTO, card);
+                    return cardRepository.save(card);
+                }
+                //senão indica que já havia alguém com esse nome editado
+                throw new InvalidName();
+            } else {
+                //Significa que o nome foi editado e não há ninguém cadastrado com ele no sistema
+                Card card = new Card();
+                BeanUtils.copyProperties(cardDTO, card);
+                return cardRepository.save(card);
+            }
+        }
+        throw new CardNotFound();
     }
+
     public List<Card> listAll(){
         return cardRepository.findAll();
     }
-    public Card listSpecific(Integer id){
-        Optional<Card> optionalcard = cardRepository.findById(id);
-        if(optionalcard.isPresent()){
-            return optionalcard.get();
+
+    public Card listOneByName(String name){
+        Optional<Card> optionalCard = cardRepository.findByName(name);
+        if(optionalCard.isPresent()){
+            return optionalCard.get();
         }
-        throw new RuntimeException("Deu ruim!");
+        throw new InvalidName();
     }
-    public void deleteSpecific(Integer id) {
+
+    public Card listOne(Integer id){
+        Optional<Card> optionalCard = cardRepository.findById(id);
+        if(optionalCard.isPresent()){
+            return optionalCard.get();
+        }
+        throw new InvalidName();
+    }
+
+    public void delete(Integer id) {
         cardRepository.deleteById(id);
     }
+
     public Page<Card> createPage(int page, int size){
         Pageable pageable = PageRequest.of(page, size);
         return cardRepository.findAll(pageable);

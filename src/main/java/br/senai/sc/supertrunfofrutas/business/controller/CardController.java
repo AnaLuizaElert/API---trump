@@ -6,7 +6,6 @@ import br.senai.sc.supertrunfofrutas.business.service.CardService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +24,9 @@ public class CardController {
     @Autowired
     private CardService cardService;
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<Card> create(@RequestBody @Valid CardDTO cardDTO){
-        Card card = new Card();
-        BeanUtils.copyProperties(cardDTO, card);
-        return  ResponseEntity.ok(cardService.create(card));
+        return  ResponseEntity.ok(cardService.create(cardDTO));
     }
 
     @PutMapping("/edit/{id}")
@@ -37,35 +34,30 @@ public class CardController {
         return  ResponseEntity.ok(cardService.edit(cardDTO, id));
     }
 
-    @GetMapping("/listAll")
-    public ResponseEntity<List<Card>> listAll(){
-        return  ResponseEntity.ok(cardService.listAll());
-    }
-
     @GetMapping("/listOne/{id}")
     public ResponseEntity<Card> listOne(@PathVariable Integer id){
-        return ResponseEntity.ok(cardService.listSpecific(id));
+        return ResponseEntity.ok(cardService.listOne(id));
     }
 
     @GetMapping("/listOneByName/{name}")
     public ResponseEntity<Card> listOneByName(@PathVariable String name){
-        for(Card card : cardService.listAll()){
-            if(card.getName().equals(name)){
-                return ResponseEntity.ok(cardService.listSpecific(card.getId()));
-            }
-        }
-        throw new RuntimeException("Item não encontrado!");
+        return ResponseEntity.ok(cardService.listOneByName(name));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Card>> listAll(){
+        return  ResponseEntity.ok(cardService.listAll());
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<Card>> listAllPageable(@RequestParam int page, @RequestParam int size){
+        return ResponseEntity.ok().body(cardService.createPage(page,size));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
-        cardService.deleteSpecific(id);
+        cardService.delete(id);
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/page")
-    public ResponseEntity<Page<Card>> findAll(@RequestParam int page, @RequestParam int size){
-        return ResponseEntity.ok().body(cardService.createPage(page,size));
     }
 
     @GetMapping("/qtyCards")

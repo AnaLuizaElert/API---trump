@@ -1,6 +1,8 @@
 package br.senai.sc.supertrunfofrutas.business.model.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,17 +12,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CardDTO {
 
-    @NotNull
+    @NotEmpty(message = "Field name is empty")
+    @Size(max = 255, message = "Field name has more than 255 characters")
     private String name;
-    @NotNull
+    @NotNull(message = "Field ranking is empty")
     private Double ranking;
-    @NotNull
+    @NotNull(message = "Field qtyCalories is empty")
     private Double qtyCalories;
-    @NotNull
+    @NotNull(message = "Field qtyGlucose is empty")
     private Double qtyGlucose;
-    @NotNull
+    @NotNull(message = "Field qtyProteins is empty")
     private Double qtyProteins;
-    @NotNull
+    @NotEmpty(message = "Field url is empty")
+    @Size(max = 255, message = "Field url has more than 255 characters")
     private String url;
 
 }

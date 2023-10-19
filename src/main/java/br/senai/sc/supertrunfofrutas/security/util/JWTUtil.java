@@ -1,5 +1,6 @@
 package br.senai.sc.supertrunfofrutas.security.util;
 
+import br.senai.sc.supertrunfofrutas.business.exception.PersonNotFound;
 import br.senai.sc.supertrunfofrutas.business.model.entity.Person;
 import br.senai.sc.supertrunfofrutas.business.repository.PersonRepository;
 import br.senai.sc.supertrunfofrutas.security.model.User;
@@ -33,7 +34,7 @@ public class JWTUtil {
     public static User getUser(String token){
         String id = JWT.decode(token).getSubject();
         Integer idInt = Integer.parseInt(id);
-        Person person = personRepository.findById(idInt).orElseThrow();
+        Person person = personRepository.findById(idInt).orElseThrow(PersonNotFound::new);
         return new User(person);
     }
 
