@@ -29,9 +29,10 @@ public class PersonService {
         return personRepository.save(person);
     }
 
-    public void delete(Integer id) throws PersonNotFound {
+    public Person editBySystem(PersonUpdateDTO personUpdateDTO, Integer id) throws PersonNotFound {
         Person person = listOne(id);
-        personRepository.delete(person);
+        BeanUtils.copyProperties(personUpdateDTO, person);
+        return personRepository.save(person);
     }
 
     public List<Person> listAll() {
@@ -72,12 +73,6 @@ public class PersonService {
         throw new PersonNotFound();
     }
 
-    public Person editBySystem(PersonUpdateDTO personUpdateDTO, Integer id) throws PersonNotFound {
-        Person person = listOne(id);
-        BeanUtils.copyProperties(personUpdateDTO, person);
-        return personRepository.save(person);
-    }
-
     public Person listOneByName(String name) {
         Optional<Person> optionalUser = personRepository.findByName(name);
         if(optionalUser.isPresent()){
@@ -85,4 +80,10 @@ public class PersonService {
         }
         throw new PersonNotFound();
     }
+
+    public void delete(Integer id) throws PersonNotFound {
+        Person person = listOne(id);
+        personRepository.delete(person);
+    }
+
 }

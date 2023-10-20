@@ -19,8 +19,8 @@ public class Person {
     private String name;
     private String password;
     private Integer points = 0;
-    private int qtyLosses = 0;
-    private int qtyVitories = 0;
+    private Integer qtyLosses = 0;
+    private Integer qtyVitories = 0;
 
     @Enumerated(EnumType.STRING)
     private List<Profile> authorities;

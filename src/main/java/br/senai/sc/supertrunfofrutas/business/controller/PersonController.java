@@ -27,9 +27,14 @@ public class PersonController {
         return ResponseEntity.ok(personService.create(personDTO));
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Person> edit(@PathVariable Integer id, @RequestBody @Valid PersonDTO personDTO){
         return ResponseEntity.ok(personService.edit(personDTO, id));
+    }
+
+    @PutMapping("/editBySytem/{id}")
+    public ResponseEntity<Person> editBySytem(@PathVariable Integer id, @RequestBody @Valid PersonUpdateDTO personUpdateDTO){
+        return ResponseEntity.ok(personService.editBySystem(personUpdateDTO, id));
     }
 
     @GetMapping("/listOne/{id}")
@@ -47,12 +52,7 @@ public class PersonController {
         return ResponseEntity.ok(personService.listAll());
     }
 
-    @PutMapping("/editBySytem/{id}")
-    public ResponseEntity<Person> editBySytem(@PathVariable Integer id, @RequestBody @Valid PersonUpdateDTO personUpdateDTO){
-        return ResponseEntity.ok(personService.editBySystem(personUpdateDTO, id));
-    }
-
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         personService.delete(id);
         return ResponseEntity.ok().build();
