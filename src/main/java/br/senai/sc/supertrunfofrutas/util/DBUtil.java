@@ -2,12 +2,15 @@ package br.senai.sc.supertrunfofrutas.util;
 
 import br.senai.sc.supertrunfofrutas.business.model.entity.Card;
 import br.senai.sc.supertrunfofrutas.business.model.entity.Person;
+import br.senai.sc.supertrunfofrutas.business.model.entity.Profile;
 import br.senai.sc.supertrunfofrutas.business.repository.CardRepository;
 import br.senai.sc.supertrunfofrutas.business.repository.PersonRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @AllArgsConstructor
@@ -25,6 +28,7 @@ public class DBUtil {
         Person personAdmin = new Person();
         personAdmin.setName("admin");
         personAdmin.setPassword(new BCryptPasswordEncoder().encode("admin"));
+        personAdmin.setAuthorities(List.of(Profile.ADMIN));
 
         personRepository.save(personAdmin);
 

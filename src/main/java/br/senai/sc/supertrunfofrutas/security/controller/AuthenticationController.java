@@ -18,14 +18,22 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @Controller
+@CrossOrigin(
+        origins = "http://localhost:3000",
+        allowCredentials = "true"
+)
 @RequestMapping("/login")
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class AuthenticationController {
 
     @Autowired
     AuthenticationManager authenticationManager;
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
 
     @PostMapping
     public ResponseEntity<?> login(
@@ -33,6 +41,8 @@ public class AuthenticationController {
             HttpServletRequest request,
             HttpServletResponse response
     ){
+        logger.debug("Received login request for username: {}", login.getUsername());
+        System.out.println("AuthenticationCOntroller");
         SecurityContextRepository securityContextRepository = new HttpSessionSecurityContextRepository();
         UsernamePasswordAuthenticationToken token =
                 new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword());
@@ -45,7 +55,16 @@ public class AuthenticationController {
             return ResponseEntity.ok(authentication.getPrincipal());
         }
 
-        return ResponseEntity.status(401).build();
+        if(authentication.isAuthenticated()){
+            User user = (User) authentication.getPrincipal();
+            logger.debug("User {} successfully authenticated.", user.getUsername());
+            Cookie cookie = CookieUtil.generateCookie(user);
+            response.addCookie(cookie);
+            return ResponseEntity.ok(authentication.getPrincipal());
+        } else {
+            logger.debug("Authentication failed for username: {}", login.getUsername());
+            return ResponseEntity.status(401).build();
+        }
     }
 
 }

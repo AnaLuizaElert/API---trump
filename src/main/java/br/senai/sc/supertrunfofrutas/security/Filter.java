@@ -25,6 +25,7 @@ public class Filter extends OncePerRequestFilter {
 
         if(!request.getRequestURI().startsWith("/login")){
             try {
+                System.out.println("FIlter  - not /login");
                 String token = CookieUtil.getToken(request);
                 User user = JWTUtil.getUsuario(token);
                 response.addCookie(CookieUtil.generateCookie(user));
@@ -46,6 +47,8 @@ public class Filter extends OncePerRequestFilter {
                 return;
             }
         }
+
+        System.out.println("FIlter  - all ");
         filterChain.doFilter(request, response);
     }
 }
