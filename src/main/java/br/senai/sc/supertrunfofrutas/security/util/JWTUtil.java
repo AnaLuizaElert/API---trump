@@ -35,8 +35,6 @@ public class JWTUtil {
 
     public static User getUsuario(String token) {
          String id = JWT.decode(token).getSubject();
-        System.out.println(id);
-        System.out.println(token);
          Integer idInt = Integer.parseInt(id);
          Person person = personRepository.findById(idInt).orElseThrow(PersonNotFound::new);
          return new User(person);
