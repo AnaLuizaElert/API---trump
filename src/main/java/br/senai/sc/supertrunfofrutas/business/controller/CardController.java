@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @AllArgsConstructor
 @NoArgsConstructor
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RequestMapping("/card")
 public class CardController {
 

@@ -210,7 +210,7 @@ public class DBUtil {
         groselha.setQtyProteins(1.0);
         groselha.setQtyGlucose(25.0);
         groselha.setQtyCalories(45.0);
-        groselha.setUrl("https://res.cloudinary.com/compo-com/image/fetch/c_fill,g_xy_center,f_auto,w_472,h_354/https/www.compo.de/.imaging/focus/dam/global/plants/currant-Johannisbeere.jpg/jcr:content.jpeg");
+        groselha.setUrl("https://capitalist.com.br/wp-content/uploads/2023/04/groselha-scaled.jpg");
         cardRepository.save(groselha);
 
     // Jabuticaba
