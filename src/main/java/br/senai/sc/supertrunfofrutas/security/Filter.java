@@ -23,9 +23,8 @@ public class Filter extends OncePerRequestFilter {
             FilterChain filterChain)
             throws ServletException, IOException {
 
-        if(!request.getRequestURI().startsWith("/login")){
+        if(!isPrivatePath(request.getRequestURI(), request.getMethod())){
             try {
-                System.out.println("FIlter  - not /login");
                 String token = CookieUtil.getToken(request);
                 User user = JWTUtil.getUsuario(token);
                 response.addCookie(CookieUtil.generateCookie(user));
@@ -47,8 +46,14 @@ public class Filter extends OncePerRequestFilter {
                 return;
             }
         }
-
-        System.out.println("FIlter  - all ");
         filterChain.doFilter(request, response);
     }
+
+    public static boolean isPrivatePath(String url, String method){
+        System.out.println(method);
+        return url.startsWith("/login") ||
+                (url.startsWith("/user") && method.equals("POST"));
+    }
 }
+
+
