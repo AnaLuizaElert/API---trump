@@ -42,7 +42,6 @@ public class Settings {
                         .requestMatchers(HttpMethod.POST, "/user").permitAll()
                         .anyRequest().authenticated());
 
-        System.out.println(httpSecurity.headers());
         httpSecurity.sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         httpSecurity.addFilterBefore(new Filter(), UsernamePasswordAuthenticationFilter.class);
         httpSecurity.headers(AbstractHttpConfigurer::disable);
@@ -61,7 +60,6 @@ public class Settings {
 
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
-        System.out.println("CorsConfigurationSource");
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of("http://localhost:3000/"));

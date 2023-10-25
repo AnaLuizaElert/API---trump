@@ -77,6 +77,10 @@ public class CardService {
         throw new InvalidName();
     }
 
+    public Card listFirstOne() {
+        return cardRepository.findAll().get(0);
+    }
+
     public void delete(Integer id) {
         cardRepository.deleteById(id);
     }
@@ -89,4 +93,5 @@ public class CardService {
     public Long qtyCards(){
         return cardRepository.count();
     }
+
 }

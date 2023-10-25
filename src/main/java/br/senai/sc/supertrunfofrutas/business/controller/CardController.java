@@ -39,6 +39,11 @@ public class CardController {
         return ResponseEntity.ok(cardService.listOne(id));
     }
 
+    @GetMapping("/listFirstOne")
+    public ResponseEntity<Card> listFirstOne(){
+        return ResponseEntity.ok(cardService.listFirstOne());
+    }
+
     @GetMapping("/listOneByName/{name}")
     public ResponseEntity<Card> listOneByName(@PathVariable String name){
         return ResponseEntity.ok(cardService.listOneByName(name));

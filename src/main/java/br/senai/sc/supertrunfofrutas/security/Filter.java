@@ -50,7 +50,6 @@ public class Filter extends OncePerRequestFilter {
     }
 
     public static boolean isPrivatePath(String url, String method){
-        System.out.println(method);
         return url.startsWith("/login") ||
                 (url.startsWith("/user") && method.equals("POST"));
     }

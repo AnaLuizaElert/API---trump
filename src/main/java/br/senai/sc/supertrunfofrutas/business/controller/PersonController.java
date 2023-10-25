@@ -1,5 +1,6 @@
 package br.senai.sc.supertrunfofrutas.business.controller;
 
+import br.senai.sc.supertrunfofrutas.business.model.dto.PersonEditDTO;
 import br.senai.sc.supertrunfofrutas.business.model.entity.Person;
 import br.senai.sc.supertrunfofrutas.business.service.PersonService;
 import br.senai.sc.supertrunfofrutas.business.model.dto.PersonDTO;
@@ -28,8 +29,8 @@ public class PersonController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Person> edit(@PathVariable Integer id, @RequestBody @Valid PersonDTO personDTO){
-        return ResponseEntity.ok(personService.edit(personDTO, id));
+    public ResponseEntity<Person> edit(@PathVariable Integer id, @RequestBody @Valid PersonEditDTO personEditDTO){
+        return ResponseEntity.ok(personService.editByWeb(personEditDTO, id));
     }
 
     @PutMapping("/editBySytem/{id}")
