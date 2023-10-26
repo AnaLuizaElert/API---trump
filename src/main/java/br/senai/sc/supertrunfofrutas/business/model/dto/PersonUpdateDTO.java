@@ -15,5 +15,5 @@ public class PersonUpdateDTO {
     @NotNull(message = "Field qtyLosses is empty")
     private Integer qtyLosses;
     @NotNull(message = "Field qtyVitories is empty")
-    private Integer qtyVitories;
+    private Integer qtyVictories;
 }
