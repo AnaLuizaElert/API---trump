@@ -20,7 +20,7 @@ public class Person {
     private String password;
     private Integer points = 0;
     private Integer qtyLosses = 0;
-    private Integer qtyVitories = 0;
+    private Integer qtyVictories = 0;
 
     @Enumerated(EnumType.STRING)
     private List<Profile> authorities;
@@ -29,7 +29,7 @@ public class Person {
         this.qtyLosses ++;
     }
 
-    public void setQtyVitories() {
-        this.qtyVitories ++;
+    public void setQtyVictories() {
+        this.qtyVictories++;
     }
 }
